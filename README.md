@@ -49,7 +49,7 @@ Furthermore, we will focus extensively on A/B testing as a method for exploring 
 
 Discounts do have a statistically significant effect on the quantity of products ordered. The bar graph below displays the magnitude of this difference, with an average order quantity of 21.7 for non-discounted items and 27.1 for discounted items.
 
-<img src='Imagees/discount_vs_nondiscount.png'>
+<img src='Images/discount_vs_nondiscount.png'>
 
 All levels of discount significantly increase the average quantity, although further research into less common discount levels (1%, 2%, 3%, 4%, and 6%) may be necessary. However, the level of the discount is not very influential in determining the quantity ordered. All discount levels appear to be weighted equally with regards to order quantity.
 

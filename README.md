@@ -1,86 +1,87 @@
 
-# Module 2 Final Project Specifications
+# Northwind Product Order Analysis
 
 ## Introduction
 
-In this lesson, we'll review all the guidelines and specifications for the final project for Module 2. 
+For this project, we'll be working with the Northwind database--a free, open-source dataset created by Microsoft containing data from a fictional company. The schema for the Northwind database can be examined below:
+
+<img src='Images/Northwind_ERD.png'>
+
+Our goal throughout this project is to practice gathering information from a real-world database and use your knowledge of statistical analysis and hypothesis testing to generate analytical insights that can be of value to the company. 
 
 ## Objectives
 
-* Understand all required aspects of the Final Project for Module 2
-* Understand all required deliverables
-* Understand what constitutes a successful project
+By employing the OSEMN (obtain, scrub, explore, model, and interpret) data science process and designing experiments for testing hypotheses about our data, we will answer the following questions with regards to the Northwind database:
 
-### Final Project Summary
+* Do discounts have a statistically significant effect on the number of products customers order? If so, at what level(s) of discount?
+* Which products have generaed the most profits over time? Does the unit price, average quantity ordered, or average discount provide the most statistically significant impact the profitability of a particular product?
+* How does the region of the supplier affect the average order quantity? What about the customer's region?
+* How does the region of the supplier affect the total price of the products ordered? What about the customer's region?
+* Does the product category have a statistically significant effect on the unit price of available products? What about the category's effect on the typical details per order (amount saved, quantity, unit price, and discount)?
 
-Another module down--you're half way there!
+The above questions have significant business value for the Northwind company, as we explore how to best maximize profits given the value of discounts and differentiation between the different discount levels. Our additional research questions allow us to analyze specific product profitability, the strength of supplier/customer regions, and 
 
-<img src='halfway-there.gif'>
+## Data Science Process 
 
-For the culmination of Module 2, you just need to complete the final project!
+Across the scope of the project, we touch upon various components of our data science process, depending on the research question at hand. However, the overall project from start to finish adheres to the OSEMN framework:
 
-### The Project
+1. Obtain
+2. Scrub
+3. Explore
+4. Model
+5. Interpret
 
-For this project, you'll be working with the Northwind database--a free, open-source dataset created by Microsoft containing data from a fictional company. You probably remember the Northwind database from our section on Advanced SQL. Here's the schema for the Northwind database:
+<img src='Images/OSEMN _framework.png'>
 
-<img src='Northwind_ERD.png'>
+Furthermore, we will focus extensively on A/B testing as a method for exploring the data and statistical analysis. Our general process will progress through the following steps:
 
-The goal of this project is to test your ability to gather information from a real-world database and use your knowledge of statistical analysis and hypothesis testing to generate analytical insights that can be of value to the company. 
+1. Identify the question
+2. Define the null (Ho) and alternative (Ha) hypotheses
+3. Generate the control and test data groupings
+4. Run the experiment (two-sample t-test)
+5. Analyze the results
 
-## The Deliverables
+<img src='Images/ab-testing.png'>
 
-The goal of your project is to query the database to get the data needed to perform a statistical analysis.  In this statistical analysis, you'll need to perform a hypothesis test (or perhaps several) to answer the following question:
+## Significant Findings
 
-**_Do discounts have a statistically significant effect on the number of products customers order? If so, at what level(s) of discount?_**
+**Discount Effect**
 
-In addition to answering this question with a hypothesis test, you will also need to come up with **_at least 3 other hypotheses to test on your own_**.  These can by anything that you think could be imporant information for the company. 
+Discounts do have a statistically significant effect on the quantity of products ordered. The bar graph below displays the magnitude of this difference, with an average order quantity of 21.7 for non-discounted items and 27.1 for discounted items.
 
-For this hypothesis, be sure to specify both the **_null hypothesis_** and the **_alternative hypothesis_** for your question.  You should also specify if this is one-tail or a two-tail test. 
+<img src='Imagees/discount_vs_nondiscount.png'>
 
-To complete this project, you will need to turn in the following 3 deliverables:
+All levels of discount significantly increase the average quantity, although further research into less common discount levels (1%, 2%, 3%, 4%, and 6%) may be necessary. However, the level of the discount is not very influential in determining the quantity ordered. All discount levels appear to be weighted equally with regards to order quantity.
 
-1. A **_Jupyter Notebook_** containing any code you've written for this project. 
-2. A **_Blog Post_** explaining your process, methodology, and findings.  
-3. An **_"Executive Summary" PowerPoint Presentation_** that explains the hypothesis tests you ran, your findings, and their relevance to company stakeholders.  
+<img src='Images/discount_levels.png'>
 
-### Jupyter Notebook Must-Haves
+**Product Profitability**
 
-For this project, your jupyter notebook should meet the following specifications:
+A handful of products (Cote de Blaye, Raclette Courdavault, Thüringer Rostbratwurst, Tarte au sucre, Manjimup Dried Apples, Gnocchi di nonna Alice, and Camembert Pierrot) generate significantly more profits than any of the other 77 available products, as illustrated in the visualization below. Average unit price is a better predictor of these products' profitability over time than the total quantity of a product across all orders. The amount and frequency of discount has little to no influence over product profitability.
 
-**_Organization/Code Cleanliness_**
+<img src='Images/product_profits_over_time.png'>
 
-* The notebook should be well organized, easy to follow, and code is commented where appropriate.  
-<br>  
-    * Level Up: The notebook contains well-formatted, professional looking markdown cells explaining any substantial code. All functions have docstrings that act as professional-quality documentation.  
-<br>      
-* The notebook is written to technical audiences with a way to both understand your approach and reproduce your results. The target audience for this deliverable is other data scientists looking to validate your findings.  
-<br>    
-* Any SQL code written to source data should also be included.  
+**Supplier/Customer Region**
 
-**_Findings_**
+Supplier region has little to no influence over order quantity, while customer region has significant influence over order quantity, with Western Europe and North America receiving the largest average orders.
 
-* Your notebook should clearly show how you arrived at your results for each hypothesis test, including how you calculated your p-values.   
-<br>
-* You should also include any other statistics that you find relevant to your analysis, such as effect size. 
+Supplier region does significantly influence average order value, with Western Europe shipping orders that average over 400 dollars more than any other region. Customer region also significantly affects average order value (but to a much lower magnitude), with Western Europe and North America once again taking the lead.
 
-### Blog Post Must-Haves
+<img src='Images/supplier_customer_region.png'>
 
-Your blog post should include everything from how you identified what tables contained the information you need, to how you retrieved it using SQL (and any challenges you ran into while doing so), as well as your methodology and results for your hypothesis tests. 
+**Product Category**
 
-**_NOTE:_**  This blog post is your way of showcasing the work you've done on this project--chances are it will soon be read by a recruiter or hiring manager! Take the time to make sure that you craft your story well, and clearly explain your process and findings in a way that clearly shows both your technical expertise **_and_** your ability to communicate your results!
+Unit prices between available products does not differ significantly based upon category, although the average unit price between ordered products does differ significantly, with meat/poultry orders at unit prices higher than any other category.
 
-### Executive Summary Must-Haves
+Customers also save the most on average from meat/poultry orders, as indicated by the significance of differences in the amount saved between product categories. The combination of these last two observations may indicate that the discounts on meat/poultry are extremely effective in generating additional profits!
 
-Your presentation should:
+<img src='Images/amount_saved_by_category.png'>
 
-* Contain between 5-10 professional quality slides detailing:
-<br>  
-    * A high-level overview of your methodology  
-    <br>  
-    * The results of your hypothesis tests  
-    <br>  
-    * Any real-world recommendations you would like to make based on your findings (ask yourself--why should the executive team care about what you found? How can your findings help the company?)  
-    <br>  
-* Take no more than 5 minutes to present  
-<br>  
-* Avoid technical jargon and explain results in a clear, actionable way for non-technical audiences.  
+## Future Work
+
+Moving forward, it may be of company interest to investigate the following:
+
+1. What is the optimal discount level for meat/poultry products to optimize their profitability over time?
+2. Which suppliers within our regions of highest production are the most valuable? How can we increase their profibility and mirror this success in other regions as well?
+3. If our lower performing supplier regions have reached maximum profitability without much room for growth, would it be financially logical (and feasible?) to transfer their services to a more effective supplier?
+4. What factors in particular are causing the seven most profitable products to rise above the rest? Is this phenomenon replicable with other products as well?
